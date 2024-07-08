@@ -1,53 +1,38 @@
-import useFetchPokemon from "../../hooks/useFetchPokemon.js";
-import {useCallback, useRef} from "react";
-import Loading from "../../components/Loading.jsx";
+import PokemonList from "./components/PokemonList.jsx";
+import pokemonBall from './../../assets/pokemonball.png';
 
 const Home = () => {
-    const {pokemonList, isLoading, setOffset} = useFetchPokemon();
-    const observer = useRef();
-
-    const lastPokemonElementRef = useCallback(node => {
-        if (isLoading) return;
-        if (observer.current) observer.current.disconnect();
-        observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
-                setOffset(prevOffset => prevOffset + 20);
-            }
-        });
-        if (node) observer.current.observe(node);
-    }, [isLoading, setOffset]);
 
     return (
         <div>
-            <div className="flex bg-[#e5e7eb] h-40 items-center justify-center">
-                <h3>What are you looking for?</h3>
+            <div className="relative h-48 md:h-56 content-center px-8 bg-main-blue">
+                <h3 className="text-xl md:text-2xl font-light text-light-grey">What are you <br/> looking for?</h3>
+                <img src={pokemonBall} alt="logo-pokemonball" className="absolute w-28 md:w34 end-3 md:end-4 -top-5 md:-top-7 opacity-30"/>
+                <form className="max-w-md mx-auto mt-6">
+                    <label htmlFor="default-search"
+                           className="mb-2 text-sm font-medium text-really-grey sr-only">Search</label>
+                    <div className="relative">
+                        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            <svg className="w-4 h-4 text-really-grey" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
+                                      strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                            </svg>
+                        </div>
+
+                        <input type="search" id="default-search"
+                               className="block w-full p-2 ps-10 text-sm text-really-grey border-none rounded-full bg-light-grey"
+                               placeholder="E.g. Pikachu" required/>
+                        <button
+                            type="submit"
+                            className="text-light-grey absolute end-1 bottom-1 bg-types-dark hover:bg-types-dark hover:opacity-80 rounded-full text-sm px-4 py-1">
+                            Go
+                        </button>
+                    </div>
+                </form>
             </div>
 
-            <div className="mt-3.5 ">
-                <div className="grid grid-cols-2 gap-4 justify-items-center px-4">
-                    {pokemonList.map((pokemon, index) => (
-                        <div key={index}
-                             className="h-52 w-full rounded-md mb-3.5 p-3.5 flex flex-col justify-between shadow-lg"
-                             ref={pokemonList.length === index + 1 ? lastPokemonElementRef : null}
-                        >
-                            <div className="flex justify-between items-center">
-                                <h2 className="font-medium text-sm capitalize">{pokemon.name}</h2>
-                                <h2 className="font-light text-xs">#{pokemon.id}</h2>
-                            </div>
-                            <div className="flex h-28 justify-center items-center">
-                                <img src={pokemon.image} alt={pokemon.name} className="h-full object-contain"/>
-                            </div>
-                            <div className="flex justify-between items-center gap-2">
-                                {pokemon.types.map((type, index) => (
-                                    <p key={index}
-                                       className="text-xs bg-really-grey rounded-sm w-full text-center px-2 py-1 text-light-grey capitalize">{type}</p>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                    {isLoading && <Loading/>}
-                </div>
-            </div>
+            <PokemonList/>
         </div>
     )
 }
