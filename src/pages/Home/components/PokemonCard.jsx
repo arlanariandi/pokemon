@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
 import {twMerge} from "tailwind-merge";
+import {useNavigate} from "react-router-dom";
 
 const PokemonCard = ({pokemon, lastPokemonElementRef}) => {
+    const navigate = useNavigate();
+
     const getPokemonElement = (type) => {
         switch (type) {
             case 'bug':
@@ -45,14 +48,19 @@ const PokemonCard = ({pokemon, lastPokemonElementRef}) => {
         }
     }
 
+    const handleClick = () => {
+        navigate(`pokedex/${pokemon.name}`);
+    }
+
     return (
         <div
-            className="h-52 w-full rounded-md mb-3.5 p-3.5 flex flex-col justify-between shadow-md bg-light-grey"
+            className="h-52 w-full rounded-md mb-3.5 p-3.5 flex flex-col justify-between shadow-md bg-light-grey cursor-pointer hover:bg-types-dark/10"
             ref={lastPokemonElementRef}
+            onClick={handleClick}
         >
             <div className="flex justify-between items-center">
                 <h2 className="font-medium text-sm text-main-blue capitalize">{pokemon.name}</h2>
-                <h2 className="font-light text-xs text-really-grey">#{pokemon.id}</h2>
+                <p className="font-light text-xs text-really-grey">#{pokemon.id}</p>
             </div>
             <div className="flex h-28 justify-center items-center">
                 <img src={pokemon.image} alt={pokemon.name} className="h-full object-contain"/>
@@ -70,8 +78,8 @@ const PokemonCard = ({pokemon, lastPokemonElementRef}) => {
 }
 
 PokemonCard.propTypes = {
-    pokemon: PropTypes.array.isRequired,
-    lastPokemonElementRef: PropTypes.func.isRequired
+    pokemon: PropTypes.object.isRequired,
+    lastPokemonElementRef: PropTypes.func
 }
 
 export default PokemonCard;
