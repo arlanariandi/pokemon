@@ -52,6 +52,8 @@ const PokemonCard = ({pokemon, lastPokemonElementRef}) => {
         navigate(`pokedex/${pokemon.name}`);
     }
 
+    const formatId = id => id.toString().padStart(4, '0');
+
     return (
         <div
             className="h-52 w-full rounded-md mb-3.5 p-3.5 flex flex-col justify-between shadow-md bg-light-grey cursor-pointer hover:bg-types-dark/10"
@@ -60,7 +62,7 @@ const PokemonCard = ({pokemon, lastPokemonElementRef}) => {
         >
             <div className="flex justify-between items-center">
                 <h2 className="font-medium text-sm text-main-blue capitalize">{pokemon.name}</h2>
-                <p className="font-light text-xs text-really-grey">#{pokemon.id}</p>
+                <p className="font-light text-xs text-really-grey">#{formatId(pokemon.id)}</p>
             </div>
             <div className="flex h-28 justify-center items-center">
                 <img src={pokemon.image} alt={pokemon.name} className="h-full object-contain"/>

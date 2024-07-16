@@ -5,6 +5,8 @@ export const PokemonContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const PokemonProvider = ({children}) => {
     const [pokemonList, setPokemonList] = useState([]);
+    const [pokemonDetail, setPokemonDetail] = useState(null);
+
     const [favorites, setFavorites] = useState([]);
 
     const addFavorite = (pokemon) => {
@@ -16,7 +18,15 @@ export const PokemonProvider = ({children}) => {
     };
 
     return (
-        <PokemonContext.Provider value={{pokemonList, setPokemonList, favorites, addFavorite, removeFavorite}}>
+        <PokemonContext.Provider value={{
+            pokemonList,
+            setPokemonList,
+            pokemonDetail,
+            setPokemonDetail,
+            favorites,
+            addFavorite,
+            removeFavorite
+        }}>
             {children}
         </PokemonContext.Provider>
     );

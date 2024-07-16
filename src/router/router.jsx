@@ -1,7 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
 import App from "../App.jsx";
 import Home from "../pages/Home/index.jsx";
-import PokemonDetail from "../pages/Detail/index.jsx";
+import Detail from "../pages/Detail/index.jsx";
 
 const setupRouter = () => createBrowserRouter([
     {
@@ -14,7 +14,7 @@ const setupRouter = () => createBrowserRouter([
             },
             {
                 path: "/pokedex/:id",
-                element: <PokemonDetail/>
+                element: <Detail/>
             }
         ]
     }

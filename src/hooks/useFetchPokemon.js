@@ -1,8 +1,9 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
+import {PokemonContext} from "../context/PokemonContext.jsx";
 
 const useFetchPokemon = () => {
-    const [pokemonList, setPokemonList] = useState([]);
+    const {pokemonList, setPokemonList} = useContext(PokemonContext)
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [offset, setOffset] = useState(0);

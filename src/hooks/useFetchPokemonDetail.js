@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
+import {PokemonContext} from "../context/PokemonContext.jsx";
 
 const useFetchPokemonDetail = (id) => {
-    const [pokemonDetail, setPokemonDetail] = useState(null);
+    const {pokemonDetail, setPokemonDetail} = useContext(PokemonContext)
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(0);
 
@@ -22,6 +23,8 @@ const useFetchPokemonDetail = (id) => {
                         stat: stat.stat.name,
                         value: stat.base_stat,
                     })),
+                    height: data.height,
+                    weight: data.weight
                 });
                 setIsLoading(false);
             } catch (err) {
