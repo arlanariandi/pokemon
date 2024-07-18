@@ -6,15 +6,15 @@ const Navbar = () => {
     const navigate = useNavigate()
 
     const handleClick = () => {
-        navigate(-1)
+        navigate('/')
     }
 
     return (
         <>
-            <div className="relative bg-main-blue h-14 content-center px-4">
+            <div className="relative bg-main-blue h-16 content-center px-6">
                 <img src={back} alt="button-back" className="w-5 cursor-pointer" onClick={handleClick}/>
                 <img src={pokemonBall} alt="logo-pokemonball"
-                     className="absolute w-14 md:w-16 end-3 md:end-4 -top-2 md:-top-3 opacity-30"/>
+                     className="absolute w-20 end-3 -top-5 opacity-50"/>
             </div>
         </>
     )

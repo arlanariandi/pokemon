@@ -5,13 +5,12 @@ const PokemonDetail = ({pokemonDetail, pokemonElement}) => {
     const formatId = id => id.toString().padStart(4, '0');
 
     return (
-        <div className="bg-light-grey p-6 rounded-md mb-6">
-            <div className="flex justify-between">
+        <div className="bg-light-grey p-6 rounded-md mb-4">
+            <div className="flex justify-between mb-4">
                 <div className="w-full">
                     <p className="font-light text-md text-really-grey">#{formatId(pokemonDetail?.id)}</p>
                     <h3 className="font-medium text-xl text-main-blue capitalize">{pokemonDetail?.name}</h3>
                 </div>
-
                 <div className="flex justify-between items-center gap-2 w-full">
                     {pokemonDetail?.types.map((type, index) => (
                         <p key={index}
@@ -22,7 +21,9 @@ const PokemonDetail = ({pokemonDetail, pokemonElement}) => {
                 </div>
             </div>
 
-            <div className="flex justify-between my-5 gap-5 items-center">
+            <p className="text-sm text-really-grey mb-3">{pokemonDetail?.description}</p>
+
+            <div className="flex justify-between gap-5 items-center">
                 <div className="w-full">
                     {pokemonDetail?.stats.map((stat, index) => (
                         <div key={index}>
@@ -31,7 +32,7 @@ const PokemonDetail = ({pokemonDetail, pokemonElement}) => {
                                 <p className="text-xs">{stat.value}</p>
                             </div>
                             <div
-                                className='w-full bg-types-fairy/25 rounded-full h-1.5 overflow-hidden mb-1.5'>
+                                className='w-full bg-types-fairy/25 rounded-full h-1.5 overflow-hidden mb-2.5'>
                                 <div className="bg-types-fairy/70 h-full rounded-full"
                                      style={{width: `${stat.value / 2}%`}}>
                                 </div>
@@ -47,7 +48,7 @@ const PokemonDetail = ({pokemonDetail, pokemonElement}) => {
 
 PokemonDetail.propTypes = {
     pokemonDetail: PropTypes.object.isRequired,
-    pokemonElement: PropTypes.object.isRequired,
+    pokemonElement: PropTypes.func.isRequired,
 }
 
 export default PokemonDetail

@@ -37,7 +37,7 @@ const useFetchPokemon = () => {
             setError(err);
             setIsLoading(false);
         }
-    }, [offset]);
+    }, [offset, setPokemonList]);
 
     useEffect(() => {
         fetchPokemon();

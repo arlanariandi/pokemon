@@ -2,12 +2,11 @@ import PokemonList from "./components/PokemonList.jsx";
 import pokemonBall from './../../assets/pokemonball.png';
 
 const Home = () => {
-
     return (
         <>
             <div className="relative h-48 md:h-56 content-center px-8 bg-main-blue">
                 <h3 className="text-xl md:text-2xl font-light text-light-grey">What are you <br/> looking for?</h3>
-                <img src={pokemonBall} alt="logo-pokemonball" className="absolute w-28 md:w-36 end-3 md:end-4 -top-5 md:-top-7 opacity-30"/>
+                <img src={pokemonBall} alt="logo-pokemonball" className="absolute w-32 md:w-40 end-0 -top-8 md:-top-10 opacity-30"/>
                 <form className="max-w-md mx-auto mt-6">
                     <label htmlFor="default-search"
                            className="mb-2 text-sm font-medium text-really-grey sr-only">Search</label>

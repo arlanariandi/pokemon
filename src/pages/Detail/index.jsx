@@ -1,10 +1,12 @@
 import {useParams} from "react-router-dom";
 import useFetchPokemonDetail from "../../hooks/useFetchPokemonDetail.js";
-import {twMerge} from "tailwind-merge";
 import Loading from "../../components/Loading.jsx";
 import Navbar from "../../components/Navbar.jsx";
 import PokemonDetail from "./components/PokemonDetail.jsx";
 import PokemonBreeding from "./components/PokemonBreeding.jsx";
+import Footer from "../../components/Footer.jsx";
+import PokemonAbilities from "./components/PokemonAbilities.jsx";
+import PokemonEvolution from "./components/pokemonEvolution.jsx";
 
 const Detail = () => {
     const {id} = useParams();
@@ -58,13 +60,13 @@ const Detail = () => {
     return (
         <div className="bg-types-dark/10">
             <Navbar/>
-            <div className="px-4 mt-6">
+            <div className="px-4 my-6">
                 <PokemonDetail pokemonDetail={pokemonDetail} pokemonElement={getPokemonElement}/>
                 <PokemonBreeding detail={pokemonDetail}/>
-                <div className="mt-4">
-                    <h2>Abilities</h2>
-                </div>
+                <PokemonAbilities abilitiesDetail={pokemonDetail}/>
+                <PokemonEvolution pokemonEvolution={pokemonDetail}/>
             </div>
+            <Footer/>
         </div>
     )
 }
