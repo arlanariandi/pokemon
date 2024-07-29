@@ -8,8 +8,6 @@ export const PokemonProvider = ({children}) => {
     const [pokemonDetail, setPokemonDetail] = useState(null);
     const [description, setDescription] = useState('');
 
-    console.log(pokemonDetail, '===')
-
     const [favorites, setFavorites] = useState([]);
 
     const addFavorite = (pokemon) => {

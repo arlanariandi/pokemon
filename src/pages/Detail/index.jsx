@@ -6,7 +6,7 @@ import PokemonDetail from "./components/PokemonDetail.jsx";
 import PokemonBreeding from "./components/PokemonBreeding.jsx";
 import Footer from "../../components/Footer.jsx";
 import PokemonAbilities from "./components/PokemonAbilities.jsx";
-import PokemonEvolution from "./components/pokemonEvolution.jsx";
+import PokemonEvolution from "./components/PokemonEvolution.jsx";
 
 const Detail = () => {
     const {id} = useParams();

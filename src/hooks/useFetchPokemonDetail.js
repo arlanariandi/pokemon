@@ -36,6 +36,7 @@ const useFetchPokemonDetail = (id) => {
                             id: evolutionData.id,
                             name: evolutionData.name,
                             image: evolutionImage,
+                            types: evolutionData.types.map(typeInfo => typeInfo.type.name),
                         });
 
                         if (currentChain.evolves_to.length > 0) {
