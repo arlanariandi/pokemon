@@ -4,9 +4,10 @@ import pokemonBall from './../../assets/pokemonball.png';
 const Home = () => {
     return (
         <>
-            <div className="relative h-48 md:h-56 content-center px-8 bg-main-blue">
+            <div className="relative h-48 md:h-56 content-center px-8 bg-main-blue mb-8">
                 <h3 className="text-xl md:text-2xl font-light text-light-grey">What are you <br/> looking for?</h3>
-                <img src={pokemonBall} alt="logo-pokemonball" className="absolute w-32 md:w-40 end-0 -top-8 md:-top-10 opacity-30"/>
+                <img src={pokemonBall} alt="logo-pokemonball"
+                     className="absolute w-32 -end-8 -top-8 md:w-40 md:end-0 md:-top-10 opacity-30"/>
                 <form className="max-w-md mx-auto mt-6">
                     <label htmlFor="default-search"
                            className="mb-2 text-sm font-medium text-really-grey sr-only">Search</label>
@@ -32,6 +33,8 @@ const Home = () => {
             </div>
 
             <PokemonList/>
+
+
         </>
     )
 }

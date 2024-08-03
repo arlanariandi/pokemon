@@ -1,51 +1,15 @@
 import arrow from '../../../assets/arrow-down.png'
 import PropTypes from "prop-types";
 import {twMerge} from "tailwind-merge";
+import {useNavigate} from "react-router-dom";
 
-const PokemonEvolution = ({pokemonEvolution}) => {
-    const getPokemonElement = (type) => {
-        switch (type) {
-            case 'bug':
-                return 'text-types-bug';
-            case'grass':
-                return 'text-types-grass';
-            case 'dragon':
-                return 'text-types-dragon';
-            case 'steal':
-                return 'text-types-steal';
-            case 'dark':
-                return 'text-types-dark';
-            case 'flying':
-                return 'text-types-flying';
-            case 'normal':
-                return 'text-types-normal';
-            case 'ghost':
-                return 'text-types-ghost';
-            case 'rock':
-                return 'text-types-rock';
-            case 'ground':
-                return 'text-types-ground';
-            case 'fighting':
-                return 'text-types-fighting';
-            case 'fire':
-                return 'text-types-fire';
-            case 'electric':
-                return 'text-types-electric';
-            case 'poison':
-                return 'text-types-poison';
-            case 'psychic':
-                return 'text-types-psychic';
-            case 'fairy':
-                return 'text-types-fairy';
-            case 'water':
-                return 'text-types-water';
-            case 'ice':
-                return 'text-types-ice';
-            default:
-                return 'text-types-normal';
-        }
-    }
+const PokemonEvolution = ({pokemonEvolution, pokemonElementEvolution}) => {
+    const navigate = useNavigate();
     const formatId = id => id.toString().padStart(4, '0');
+
+    const handleClick = (name) => {
+        navigate(`/pokedex/${name}`);
+    }
 
     return (
         <div className="bg-light-grey p-6 rounded-md mb-6">
@@ -55,7 +19,8 @@ const PokemonEvolution = ({pokemonEvolution}) => {
                 <div key={index} className="flex flex-col items-center mb-4">
                     <img src={arrow} alt="arrow down" className={`w-4 mb-4 ${index === 0 ? 'hidden' : ''}`}/>
 
-                    <div className="w-full px-14 py-2 rounded-md hover:bg-really-grey/10">
+                    <div className="w-full px-14 py-2 rounded-md hover:bg-really-grey/10 cursor-pointer"
+                         onClick={() => handleClick(evolution.name)}>
                         <div className="flex items-center justify-between gap-4">
                             <img src={evolution?.image} alt={evolution?.name}
                                  className="w-20 rounded-full"/>
@@ -67,7 +32,7 @@ const PokemonEvolution = ({pokemonEvolution}) => {
                                         <div className="flex gap-2">
                                             {evolution?.types.map((type, index) => (
                                                 <p key={index}
-                                                   className={twMerge('text-xs font-medium text-types-grass capitalize', getPokemonElement(type))}>
+                                                   className={twMerge('text-xs font-medium text-types-grass capitalize', pokemonElementEvolution(type))}>
                                                     {type}
                                                 </p>
                                             ))}
@@ -86,6 +51,7 @@ const PokemonEvolution = ({pokemonEvolution}) => {
 
 PokemonEvolution.propTypes = {
     pokemonEvolution: PropTypes.object.isRequired,
+    pokemonElementEvolution: PropTypes.func.isRequired,
 }
 
 export default PokemonEvolution;

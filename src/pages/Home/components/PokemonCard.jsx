@@ -1,9 +1,14 @@
 import PropTypes from "prop-types";
 import {twMerge} from "tailwind-merge";
 import {useNavigate} from "react-router-dom";
+import heart from '../../../assets/heart.png';
+import heartFit from '../../../assets/heart-fitt.png';
+import {useContext} from "react";
+import {PokemonContext} from "../../../context/PokemonContext.jsx";
 
 const PokemonCard = ({pokemon, lastPokemonElementRef}) => {
     const navigate = useNavigate();
+    const {favorites, addFavorite, removeFavorite} = useContext(PokemonContext);
 
     const getPokemonElement = (type) => {
         switch (type) {
@@ -48,21 +53,39 @@ const PokemonCard = ({pokemon, lastPokemonElementRef}) => {
         }
     }
 
-    const handleClick = () => {
-        navigate(`pokedex/${pokemon.name}`);
+    const handleClick = (name) => {
+        navigate(`/pokedex/${name}`);
     }
 
     const formatId = id => id.toString().padStart(4, '0');
+
+    const isFavorite = favorites.some(fav => fav.id === pokemon.id);
+
+    const handleFavorite = (e) => {
+        e.stopPropagation();
+        if (isFavorite) {
+            removeFavorite(pokemon);
+        } else {
+            addFavorite(pokemon);
+        }
+    }
 
     return (
         <div
             className="h-52 w-full rounded-md mb-3.5 p-3.5 flex flex-col justify-between shadow-md bg-light-grey cursor-pointer hover:bg-types-dark/10"
             ref={lastPokemonElementRef}
-            onClick={handleClick}
+            onClick={() => handleClick(pokemon.name)}
         >
             <div className="flex justify-between items-center">
                 <h2 className="font-medium text-sm text-main-blue capitalize">{pokemon.name}</h2>
-                <p className="font-light text-xs text-really-grey">#{formatId(pokemon.id)}</p>
+                <div className="flex gap-1 items-center">
+                    <p className="font-light text-xs text-really-grey">#{formatId(pokemon.id)}</p>
+                    {isFavorite ?
+                        <img src={heartFit} alt="heartfit" className="w-6 cursor-pointer" onClick={handleFavorite}/>
+                        :
+                        <img src={heart} alt="heart" className="w-6 cursor-pointer" onClick={handleFavorite}/>
+                    }
+                </div>
             </div>
             <div className="flex h-28 justify-center items-center">
                 <img src={pokemon.image} alt={pokemon.name} className="h-full object-contain"/>
