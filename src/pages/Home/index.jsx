@@ -1,9 +1,12 @@
-import PokemonList from "./components/PokemonList.jsx";
+import PokemonGrid from "./components/PokemonGrid.jsx";
 import pokemonBall from './../../assets/pokemonball.png';
+import Menubar from "../../components/Menubar.jsx";
 
 const Home = () => {
     return (
         <>
+            <Menubar/>
+
             <div className="relative h-48 md:h-56 content-center px-8 bg-main-blue mb-8">
                 <h3 className="text-xl md:text-2xl font-light text-light-grey">What are you <br/> looking for?</h3>
                 <img src={pokemonBall} alt="logo-pokemonball"
@@ -32,9 +35,7 @@ const Home = () => {
                 </form>
             </div>
 
-            <PokemonList/>
-
-
+            <PokemonGrid/>
         </>
     )
 }
