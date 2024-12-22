@@ -2,7 +2,7 @@ import {twMerge} from "tailwind-merge";
 import PropTypes from "prop-types";
 import {useNavigate} from "react-router-dom";
 
-const PokemonList = ({key, pokemon}) => {
+const PokemonList = ({pokemon}) => {
     const navigate = useNavigate();
     const getPokemonElement = (type) => {
         switch (type) {
@@ -54,7 +54,7 @@ const PokemonList = ({key, pokemon}) => {
     const formatId = id => id.toString().padStart(4, '0');
 
     return (
-        <div key={key} className="w-full px-14 py-2 rounded-md bg-really-grey/10 cursor-pointer mb-4"
+        <div className="w-full px-14 py-2 rounded-md bg-really-grey/10 cursor-pointer mb-4"
              onClick={() => handleClick(pokemon.name)}>
             <div className="flex items-center justify-between gap-4">
                 <img src={pokemon?.image} alt={pokemon?.name}
@@ -82,7 +82,6 @@ const PokemonList = ({key, pokemon}) => {
 }
 
 PokemonList.propTypes = {
-    key: PropTypes.string.isRequired,
     pokemon: PropTypes.object.isRequired,
 }
 
